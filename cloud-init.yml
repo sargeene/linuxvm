@@ -1,51 +1,51 @@
 #cloud-config
-package_upgrade: true
-packages:
-  - fontconfig
-  - openjdk-17-jre
-  - gnupg
-  - software-properties-common
-  - curl
-runcmd:
-  - wget -O /usr/share/keyrings/jenkins-keyring.asc https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
-  - echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian-stable binary/" | tee /etc/apt/sources.list.d/jenkins.list > /dev/null
-  - apt-get update
-  - apt-get install -y jenkins
-  - curl -fsSL https://apt.releases.hashicorp.com/gpg | gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
-  - echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/hashicorp.list
-  - apt-get update
-  - apt-get install -y terraform
-  - curl -sL https://aka.ms/InstallAzureCLIDeb | bash
-  - systemctl start jenkins
-  - systemctl enable jenkins
-
-
-
-
-
-# #cloud-config
+# package_upgrade: true
 # packages:
 #   - fontconfig
 #   - openjdk-17-jre
-#   - wget
-#   - apt-transport-https
+#   - gnupg
 #   - software-properties-common
-
+#   - curl
 # runcmd:
-#   - sudo apt update
-#   - sudo apt install -y fontconfig openjdk-17-jre
-#   - java -version
+#   - wget -O /usr/share/keyrings/jenkins-keyring.asc https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+#   - echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian-stable binary/" | tee /etc/apt/sources.list.d/jenkins.list > /dev/null
+#   - apt-get update
+#   - apt-get install -y jenkins
+#   - curl -fsSL https://apt.releases.hashicorp.com/gpg | gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+#   - echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/hashicorp.list
+#   - apt-get update
+#   - apt-get install -y terraform
+#   - curl -sL https://aka.ms/InstallAzureCLIDeb | bash
+#   - systemctl start jenkins
+#   - systemctl enable jenkins
 
-#   # Install Jenkins
-#   - sudo wget -O /usr/share/keyrings/jenkins-keyring.asc https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
-#   - echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian-stable binary/" | sudo tee /etc/apt/sources.list.d/jenkins.list > /dev/null
-#   - sudo apt-get update
-#   - sudo apt-get install -y jenkins
 
-#   # Install Azure CLI
-#   - curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+# YOU CANUSE ANY OF THE TWO SCRIPTS TO INSTALL jenkins, Azure CLI, terraform
 
-#   # Install Terraform
-#   - curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
-#   - sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
-#   - sudo apt-get update && sudo apt-get install -y terraform
+
+#cloud-config
+packages:
+  - fontconfig
+  - openjdk-17-jre
+  - wget
+  - apt-transport-https
+  - software-properties-common
+
+runcmd:
+  - sudo apt update
+  - sudo apt install -y fontconfig openjdk-17-jre
+  - java -version
+
+  # Install Jenkins
+  - sudo wget -O /usr/share/keyrings/jenkins-keyring.asc https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+  - echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian-stable binary/" | sudo tee /etc/apt/sources.list.d/jenkins.list > /dev/null
+  - sudo apt-get update
+  - sudo apt-get install -y jenkins
+
+  # Install Azure CLI
+  - curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+
+  # Install Terraform
+  - curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+  - sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+  - sudo apt-get update && sudo apt-get install -y terraform
