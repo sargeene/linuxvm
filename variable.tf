@@ -6,7 +6,7 @@ variable "rg_name" {
 variable "owner" {
   description = "resource owner"
   type        = string
-  default     = "linux"
+  default     = "ray"
 }
 variable "environment" {
   description = "resource environment"
@@ -18,21 +18,21 @@ variable "location" {
   type        = string
   default     = "uksouth"
 }
-variable "linux_vm" {
+variable "linux_vm_name" {
   description = "linux vm name"
   type        = string
   default     = "linuxvm"
 }
-variable "linux_admin_user" {
+variable "linuxvm_admin_user" {
   description = "windows username"
   type        = string
   default     = "adminuser"
 }
-variable "admin_user_ssh_username" {
+/*variable "admin_user_ssh_username" {
   description = "windows username"
   type        = string
   default     = "adminuser"
-}
+}*/
 variable "vnet" {
   description = "virtual network"
   type        = string
